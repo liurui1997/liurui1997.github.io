@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定底部悬浮元素</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding-bottom: 70px; /* 为底部固定元素留出空间 */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .card p {
+            margin-bottom: 15px;
+        }
+        
+        /* 固定底部悬浮元素样式 */
+        .fixed-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .fixed-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .fixed-bottom-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .scroll-indicator {
+            text-align: center;
+            margin: 30px 0;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .fixed-bottom-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .fixed-bottom {
+                font-size: 1rem;
+                padding: 15px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>固定底部悬浮元素演示</h1>
+        <p class="subtitle">滚动页面查看底部元素如何保持固定</p>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="card">
+                <h2>CSS定位技巧</h2>
+                <p>使用<code>position: fixed</code>可以将元素固定在视口的指定位置。</p>
+                <p>结合<code>bottom: 0</code>和<code>left: 0</code>，可以使元素始终显示在页面底部。</p>
+            </div>
+            
+            <div class="card">
+                <h2>层级管理</h2>
+                <p>使用<code>z-index</code>属性确保固定元素显示在其他内容之上。</p>
+                <p>较高的z-index值（如1000）可以确保元素始终可见。</p>
+            </div>
+            
+            <div class="card">
+                <h2>响应式设计</h2>
+                <p>通过媒体查询，我们可以确保在移动设备上底部元素也能正确显示。</p>
+                <p>在小屏幕上，我们可以调整布局和字体大小以获得更好的体验。</p>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            ↓ 继续向下滚动查看效果 ↓
+        </div>
+        
+        <!-- 添加更多内容以便滚动 -->
+        <div class="content">
+            <div class="card">
+                <h2>内容区域 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            
+            <div class="card">
+                <h2>内容区域 2</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            
+            <div class="card">
+                <h2>内容区域 3</h2>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2>内容区域 4</h2>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</p>
+                <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio.</p>
+            </div>
+            
+            <div class="card">
+                <h2>内容区域 5</h2>
+                <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae.</p>
+                <p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis.</p>
+            </div>
+            
+            <div class="card">
+                <h2>内容区域 6</h2>
+                <p>Nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 固定底部悬浮元素 -->
+    <div class="fixed-bottom">
+        <div class="fixed-bottom-content">
+            <div>我是固定在底部的元素 - 滚动页面时我会保持在底部</div>
+            <div class="fixed-bottom-buttons">
+                <button class="btn btn-secondary">取消</button>
+                <button class="btn btn-primary">确认</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
